@@ -12,5 +12,11 @@
 
     <artifactId>converter-dao</artifactId>
 
+     <dependencies>
+         <dependency>
+             <groupId>de.zooplus.converter</groupId>
+             <artifactId>converter-model</artifactId>
+         </dependency>
+     </dependencies>
 
 </project>
