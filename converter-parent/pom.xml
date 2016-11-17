@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <name>converter-parent</name>
+  <modules>
+    <module>../converter-web</module>
+    <module>../converter-model</module>
+    <module>../converter-dao</module>
+    <module>../converter-service</module>
+  </modules>
+  <groupId>de.zooplus.converter</groupId>
+  <artifactId>converter-parent</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Dependency versions -->
+    <spring.version>4.0.9.RELEASE</spring.version>
+    <spring.data.version>1.8.0.RELEASE</spring.data.version>
+    <spring.security.version>3.2.5.RELEASE</spring.security.version>
+    <spring.ws.version>2.1.4.RELEASE</spring.ws.version>
+    <spring.ws.security.version>2.1.4.RELEASE</spring.ws.security.version>
+    <spring.shell.version>1.1.0.RELEASE</spring.shell.version>
+    <io.projectreactor.version>2.0.5.RELEASE</io.projectreactor.version>
+    <hibernate.version>4.3.10.Final</hibernate.version>
+    <cglib.version>3.1</cglib.version>
+    <aspectj.version>1.7.4</aspectj.version>
+    <oracle.version>11.2.0.2.0</oracle.version>
+    <embedded.tomcat.version>7.0.61</embedded.tomcat.version>
+    <wiremock.jetty.version>6.1.26</wiremock.jetty.version>
+    <jetty.version>9.3.0.v20150612</jetty.version>
+    <jersey.version>2.19</jersey.version>
+    <derby.version>10.12.1.1</derby.version>
+
+    <!-- Plugin configuration -->
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+</project>
