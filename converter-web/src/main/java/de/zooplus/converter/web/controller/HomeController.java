@@ -16,6 +16,6 @@ public class HomeController {
 
     @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
     public ResponseEntity<String> getHome(){
-        return new ResponseEntity<>("home", HttpStatus.OK);
+        return new ResponseEntity<>("home", HttpStatus.OK); Heroku
     }
 }

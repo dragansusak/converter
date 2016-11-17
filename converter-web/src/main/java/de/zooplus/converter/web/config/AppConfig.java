@@ -25,7 +25,7 @@ import java.util.TimeZone;
  */
 @EnableWebMvc
 @Configuration
-@ComponentScan(basePackages = {"my.test"})
+@ComponentScan(basePackages = {"de.zooplus.converter.web.controller"})
 public class AppConfig extends WebMvcConfigurerAdapter {
 
 //    @Override
@@ -52,18 +52,18 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/WEB-INF/**","/resources/**").addResourceLocations("/WEB-INF/","/resources/").setCachePeriod(0);
     }
 
-    @Bean
-    public DozerBeanMapperFactoryBean getDozermapper() {
-        return new DozerBeanMapperFactoryBean();
-    }
-
-    @Bean
-    public MappingJackson2HttpMessageConverter jackson2HttpMessageConverter(){
-        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        JavaTimeModule m = new JavaTimeModule();
-        converter.getObjectMapper().registerModule(m);
-        return converter;
-    }
+//    @Bean
+//    public DozerBeanMapperFactoryBean getDozermapper() {
+//        return new DozerBeanMapperFactoryBean();
+//    }
+//
+//    @Bean
+//    public MappingJackson2HttpMessageConverter jackson2HttpMessageConverter(){
+//        MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+//        JavaTimeModule m = new JavaTimeModule();
+//        converter.getObjectMapper().registerModule(m);
+//        return converter;
+//    }
 
 //    @Bean(name = "multipartResolver")
 //    public CommonsMultipartResolver getMultipartResolver() {
