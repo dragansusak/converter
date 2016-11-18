@@ -1,7 +1,7 @@
 package de.zooplus.converter.service;
 
 import de.zooplus.converter.dao.repository.UserRepository;
-import de.zooplus.converter.model.Users;
+import de.zooplus.converter.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository repository;
     @Override
-    public List<Users> getAllUsers() {
+    public List<User> getAllUsers() {
         return repository.findAll();
     }
 }

@@ -1,6 +1,6 @@
 package de.zooplus.converter.web.controller;
 
-import de.zooplus.converter.model.Users;
+import de.zooplus.converter.model.User;
 import de.zooplus.converter.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,8 +23,8 @@ public class HomeController {
     private UserService userService;
 
     @RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.GET)
-    public ResponseEntity<List<Users>> getHome(){
-        List<Users> l = userService.getAllUsers();
+    public ResponseEntity<List<User>> getHome(){
+        List<User> l = userService.getAllUsers();
         return new ResponseEntity<>(l, HttpStatus.OK);
     }
 }

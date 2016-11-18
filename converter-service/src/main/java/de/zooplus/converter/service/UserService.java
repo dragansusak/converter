@@ -1,6 +1,6 @@
 package de.zooplus.converter.service;
 
-import de.zooplus.converter.model.Users;
+import de.zooplus.converter.model.User;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<Users> getAllUsers();
+    List<User> getAllUsers();
 }

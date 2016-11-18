@@ -1,6 +1,6 @@
 package de.zooplus.converter.dao.repository;
 
-import de.zooplus.converter.model.Users;
+import de.zooplus.converter.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Created by Dragan Susak on 18-Nov-16.
  */
 @Repository
-public interface UserRepository extends JpaRepository<Users,Integer> {
+public interface UserRepository extends JpaRepository<User,Integer> {
 }
