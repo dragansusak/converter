@@ -15,7 +15,7 @@ public class User extends AbstractEntity{
 
     private Date dateOfBirth;
 
-    private String name;
+    private String password;
 
     private String email;
 
@@ -27,15 +27,18 @@ public class User extends AbstractEntity{
 
     private String country;
 
+    @Transient
+    private String repeatedPassword;
+
     @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
     private List<Conversion> conversions = new ArrayList<>();
 
-    public String getName() {
-        return name;
+    public String getPassword() {
+        return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {
@@ -92,5 +95,13 @@ public class User extends AbstractEntity{
 
     public void setConversions(List<Conversion> conversions) {
         this.conversions = conversions;
+    }
+
+    public String getRepeatedPassword() {
+        return repeatedPassword;
+    }
+
+    public void setRepeatedPassword(String repeatedPassword) {
+        this.repeatedPassword = repeatedPassword;
     }
 }
