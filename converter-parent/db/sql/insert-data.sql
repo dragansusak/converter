@@ -1,3 +1,2 @@
-INSERT INTO users VALUES (1, 'mkyong', 'mkyong@gmail.com');
-INSERT INTO users VALUES (2, 'alex', 'alex@yahoo.com');
-INSERT INTO users VALUES (3, 'joel', 'joel@gmail.com');
+INSERT INTO users ( date_of_birth, created_on, name, email, address, zip_code, city, country) VALUES ('2000-11-11',  '2000-11-11', 'user', 'mkyong@gmail.com','Adresa', '78000', 'BL', 'BA');
+insert into conversions (source_currency, target_currency, amount, result, user_id) values ('CHF', 'EUR', 10, 12, 1);

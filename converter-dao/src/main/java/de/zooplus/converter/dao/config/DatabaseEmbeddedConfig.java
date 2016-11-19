@@ -73,7 +73,7 @@ public class DatabaseEmbeddedConfig {
         final LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         factoryBean.setDataSource(datasource);
         factoryBean.setPersistenceUnitName(UNIT_NAME);
-        factoryBean.setPackagesToScan("de.zooplus.converter.model");
+        factoryBean.setPackagesToScan("de.zooplus.converter.model.entity");
         factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
         factoryBean.setJpaProperties(jpaProperties());
         factoryBean.afterPropertiesSet();

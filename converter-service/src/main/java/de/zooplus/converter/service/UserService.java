@@ -1,6 +1,6 @@
 package de.zooplus.converter.service;
 
-import de.zooplus.converter.model.User;
+import de.zooplus.converter.model.entity.User;
 
 import java.util.List;
 
