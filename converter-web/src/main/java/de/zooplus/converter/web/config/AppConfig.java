@@ -44,6 +44,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //        bean.setViewClass(JstlView.class);
         bean.setExposeContextBeansAsAttributes(true);
         bean.setPrefix("/WEB-INF/views/");
+        bean.setSuffix(".jsp");
         return bean;
     }
 

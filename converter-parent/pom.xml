@@ -376,7 +376,7 @@
         <version>2.2</version>
         <configuration>
           <port>9090</port>
-          <path>/</path>
+          <path>/converter</path>
         </configuration>
       </plugin>
     </plugins>
