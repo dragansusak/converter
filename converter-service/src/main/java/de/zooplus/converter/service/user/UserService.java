@@ -14,4 +14,6 @@ public interface UserService {
     boolean checkEmailUnique(String email);
 
     void saveUser(User user);
+
+    User getUserByEmail(String email);
 }

@@ -5,12 +5,16 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
@@ -32,6 +36,14 @@ public class AppConfig extends WebMvcConfigurerAdapter {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(jackson2HttpMessageConverter());
     }
+
+//    @Override
+//    public void addViewControllers(ViewControllerRegistry registry) {
+//        super.addViewControllers(registry);
+//        registry.addViewController("/").setViewName("home");
+////        registry.addViewController("/login").setViewName("login");
+//        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
+//    }
 
     @Bean
     public InternalResourceViewResolver htmlViewResolver() {

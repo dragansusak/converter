@@ -22,6 +22,11 @@
             <groupId>de.zooplus.converter</groupId>
             <artifactId>converter-model</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+        </dependency>
     </dependencies>
 
 

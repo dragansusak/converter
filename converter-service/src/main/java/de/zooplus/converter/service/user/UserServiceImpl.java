@@ -32,4 +32,9 @@ public class UserServiceImpl implements UserService{
     public void saveUser(User user) {
         repository.save(user);
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        return null;
+    }
 }

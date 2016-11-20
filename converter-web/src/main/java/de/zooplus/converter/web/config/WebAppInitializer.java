@@ -27,7 +27,8 @@ public class WebAppInitializer implements WebApplicationInitializer {
         servlet.addMapping("/");
         ctx.setConfigLocations(new String[] {
                 ServiceConfig.class.getPackage().getName(),
-                DatabaseEmbeddedConfig.class.getPackage().getName()
+                DatabaseEmbeddedConfig.class.getPackage().getName(),
+                WebSecurityConfig.class.getPackage().getName()
         });
     }
 
