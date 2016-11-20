@@ -26,7 +26,7 @@
         <tr>
             <td><form:label path="country">Country</form:label></td>
             <td><form:select path="country">
-                <form:option value="" label="--Please Select"/>
+                <form:option value="" label="Please Select"/>
                 <form:options items="${countries}" itemLabel="displayCountry" itemValue="displayCountry"/>
             </form:select>&nbsp;*</td>
             <td><form:errors path="country" cssClass="valiadation_error"/></td>

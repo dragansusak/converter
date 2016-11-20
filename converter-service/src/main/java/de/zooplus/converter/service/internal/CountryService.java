@@ -1,4 +1,4 @@
-package de.zooplus.converter.service.country;
+package de.zooplus.converter.service.internal;
 
 import java.util.List;
 import java.util.Locale;

@@ -1,4 +1,4 @@
-package de.zooplus.converter.service.user;
+package de.zooplus.converter.service.internal;
 
 import de.zooplus.converter.model.entity.User;
 
@@ -16,4 +16,6 @@ public interface UserService {
     void saveUser(User user);
 
     User getUserByEmail(String email);
+
+    User getById(Integer userId);
 }

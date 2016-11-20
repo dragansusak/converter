@@ -1,9 +1,13 @@
 package de.zooplus.converter.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.Date;
 
 /**
  * Created by dragan on 19-Nov-16.
@@ -12,9 +16,16 @@ import java.math.BigDecimal;
 @Table(name = "conversions")
 public class Conversion extends AbstractEntity{
 
+    @NotEmpty
     private String sourceCurrency;
 
+    @NotEmpty
     private String targetCurrency;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date validOn;
 
     private Double rate;
 
@@ -53,5 +64,13 @@ public class Conversion extends AbstractEntity{
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Date getValidOn() {
+        return validOn;
+    }
+
+    public void setValidOn(Date validOn) {
+        this.validOn = validOn;
     }
 }

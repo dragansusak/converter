@@ -1,7 +1,7 @@
 package de.zooplus.converter.web.controller;
 
 import de.zooplus.converter.model.entity.User;
-import de.zooplus.converter.service.user.UserService;
+import de.zooplus.converter.service.internal.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

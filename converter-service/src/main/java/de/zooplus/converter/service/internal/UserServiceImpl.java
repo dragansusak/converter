@@ -1,4 +1,4 @@
-package de.zooplus.converter.service.user;
+package de.zooplus.converter.service.internal;
 
 import de.zooplus.converter.dao.repository.UserRepository;
 import de.zooplus.converter.model.entity.User;
@@ -15,26 +15,32 @@ import java.util.List;
 public class UserServiceImpl implements UserService{
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository userRepository;
 
     @Transactional(readOnly = true)
     @Override
     public List<User> getAllUsers() {
-        return repository.findAll();
+        return userRepository.findAll();
     }
 
     @Override
     public boolean checkEmailUnique(String email) {
-        return repository.countByEmail(email) == 0;
+        return userRepository.countByEmail(email) == 0;
     }
 
+    @Transactional
     @Override
     public void saveUser(User user) {
-        repository.save(user);
+        userRepository.save(user);
     }
 
     @Override
     public User getUserByEmail(String email) {
         return null;
+    }
+
+    @Override
+    public User getById(Integer userId) {
+        return userRepository.findOne(userId);
     }
 }

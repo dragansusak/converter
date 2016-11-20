@@ -1,8 +1,8 @@
 package de.zooplus.converter.web.controller;
 
 import de.zooplus.converter.model.entity.User;
-import de.zooplus.converter.service.country.CountryService;
-import de.zooplus.converter.service.user.UserService;
+import de.zooplus.converter.service.internal.CountryService;
+import de.zooplus.converter.service.internal.UserService;
 import de.zooplus.converter.web.validation.PasswordValidator;
 import de.zooplus.converter.web.validation.UniqueEmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;

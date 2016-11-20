@@ -1,7 +1,7 @@
 package de.zooplus.converter.service.security;
 
 import de.zooplus.converter.model.entity.User;
-import de.zooplus.converter.service.user.UserService;
+import de.zooplus.converter.service.internal.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

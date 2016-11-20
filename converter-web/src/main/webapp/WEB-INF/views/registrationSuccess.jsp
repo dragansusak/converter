@@ -4,6 +4,6 @@
     <title>Registration success</title>
 </head>
 <body>
-Registration was successful! Go to <a href="/converter/login">Home</a> page.
+Registration was successful! Go to <a href="/converter/login">Login</a> page.
 </body>
 </html>
