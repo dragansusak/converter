@@ -1,6 +1,12 @@
 package de.zooplus.converter.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.Date;
@@ -13,24 +19,39 @@ import java.util.List;
 @Table(name = "users")
 public class User extends AbstractEntity{
 
+    private String name;
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfBirth;
 
+    @JsonIgnore
+    @NotEmpty
     private String password;
 
+    @Pattern(message = "{javax.validation.constraints.Email.message}", regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
 
+    @NotEmpty
     private String address;
 
+    @NotEmpty
     private String zipCode;
 
+    @NotEmpty
     private String city;
 
+    @NotEmpty
     private String country;
 
+    @JsonIgnore
+    @NotEmpty
     @Transient
     private String repeatedPassword;
 
-    @OneToMany(mappedBy="user", fetch = FetchType.EAGER)
+    @JsonIgnore
+    @OneToMany(mappedBy="user")
     private List<Conversion> conversions = new ArrayList<>();
 
     public String getPassword() {
@@ -103,5 +124,13 @@ public class User extends AbstractEntity{
 
     public void setRepeatedPassword(String repeatedPassword) {
         this.repeatedPassword = repeatedPassword;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

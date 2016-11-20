@@ -1,4 +1,4 @@
-package de.zooplus.converter.service;
+package de.zooplus.converter.service.user;
 
 import de.zooplus.converter.model.entity.User;
 
@@ -10,4 +10,8 @@ import java.util.List;
 public interface UserService {
 
     List<User> getAllUsers();
+
+    boolean checkEmailUnique(String email);
+
+    void saveUser(User user);
 }

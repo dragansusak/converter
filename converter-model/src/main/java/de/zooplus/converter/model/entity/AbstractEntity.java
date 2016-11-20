@@ -1,9 +1,8 @@
 package de.zooplus.converter.model.entity;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -16,7 +15,15 @@ public abstract class AbstractEntity {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     protected Integer id;
 
+    @Temporal(TemporalType.TIMESTAMP)
     protected Date createdOn;
+
+    @PrePersist
+    public void prePersist(){
+        if(createdOn == null) {
+            createdOn = new Date();
+        }
+    }
 
     public Integer getId() {
         return id;

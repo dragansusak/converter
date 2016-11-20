@@ -164,7 +164,7 @@ public class DatabaseEmbeddedConfig {
         final ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
 
 //            resourceDatabasePopulator.addScript(new PathResource("db/create-db.sql"));
-            resourceDatabasePopulator.addScript(new PathResource("db/sql/insert-data.sql"));
+//            resourceDatabasePopulator.addScript(new PathResource("db/sql/insert-data.sql"));
         return resourceDatabasePopulator;
     }
 

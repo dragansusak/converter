@@ -16,9 +16,7 @@ public class Conversion extends AbstractEntity{
 
     private String targetCurrency;
 
-    private BigDecimal amount;
-
-    private BigDecimal result;
+    private Double rate;
 
     @JsonIgnore
     @ManyToOne
@@ -41,20 +39,12 @@ public class Conversion extends AbstractEntity{
         this.targetCurrency = targetCurrency;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public Double getRate() {
+        return rate;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public BigDecimal getResult() {
-        return result;
-    }
-
-    public void setResult(BigDecimal result) {
-        this.result = result;
+    public void setRate(Double rate) {
+        this.rate = rate;
     }
 
     public User getUser() {

@@ -1,4 +1,4 @@
-package de.zooplus.converter.service;
+package de.zooplus.converter.service.user;
 
 import de.zooplus.converter.dao.repository.UserRepository;
 import de.zooplus.converter.model.entity.User;
@@ -17,9 +17,19 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository repository;
 
-//    @Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     @Override
     public List<User> getAllUsers() {
         return repository.findAll();
+    }
+
+    @Override
+    public boolean checkEmailUnique(String email) {
+        return repository.countByEmail(email) == 0;
+    }
+
+    @Override
+    public void saveUser(User user) {
+        repository.save(user);
     }
 }
