@@ -38,7 +38,6 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 //    public void addViewControllers(ViewControllerRegistry registry) {
 //        super.addViewControllers(registry);
 //        registry.addViewController("/").setViewName("home");
-////        registry.addViewController("/login").setViewName("login");
 //        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
 //    }
 

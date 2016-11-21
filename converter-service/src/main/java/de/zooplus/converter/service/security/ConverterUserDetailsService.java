@@ -24,9 +24,6 @@ public class ConverterUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
-    @Value("${TEST_PROPERTY}")
-    private String pro;
-
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -41,7 +38,6 @@ public class ConverterUserDetailsService implements UserDetailsService {
 
     private List<GrantedAuthority> getGrantedAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
         authorities.add(new SimpleGrantedAuthority("USER"));
 
         return authorities;

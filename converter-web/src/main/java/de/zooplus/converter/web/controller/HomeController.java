@@ -39,7 +39,7 @@ public class HomeController {
     @Autowired
     private CurrencyService currencyService;
 
-    @RequestMapping
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView getHome() {
         ModelAndView modelAndView = new ModelAndView("home", "conversion", new Conversion());
         return modelAndView;
