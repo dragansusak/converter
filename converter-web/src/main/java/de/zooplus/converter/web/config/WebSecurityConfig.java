@@ -68,6 +68,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest()
                 .hasAnyAuthority("USER")
                 .and()
+                .csrf().disable()
                 .formLogin();
 //                .loginPage("/login")
 //                .defaultSuccessUrl("/home")
