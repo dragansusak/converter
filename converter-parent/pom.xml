@@ -30,9 +30,6 @@
     <hibernate.version>4.3.10.Final</hibernate.version>
     <cglib.version>3.1</cglib.version>
     <aspectj.version>1.7.4</aspectj.version>
-    <oracle.version>11.2.0.2.0</oracle.version>
-    <embedded.tomcat.version>7.0.61</embedded.tomcat.version>
-    <wiremock.jetty.version>6.1.26</wiremock.jetty.version>
     <jetty.version>9.3.0.v20150612</jetty.version>
     <jersey.version>2.19</jersey.version>
     <derby.version>10.12.1.1</derby.version>
