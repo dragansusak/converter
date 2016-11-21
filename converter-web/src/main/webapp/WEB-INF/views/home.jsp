@@ -52,6 +52,7 @@
             </table>
         </form:form>
     </div>
+<c:if test="${not empty conversions}">
     <div>
         <table>
         <thead>
@@ -77,5 +78,6 @@
         </tbody>
         </table>
     </div>
+</c:if>
 </body>
 </html>

@@ -2,6 +2,7 @@ package de.zooplus.converter.web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.access.AccessDeniedHandlerImpl;
 
@@ -34,6 +38,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("ConverterUserDetailsService")
     private UserDetailsService converterUserDetailsService;
 
+    private static final String PASSWORD_SECRET = "secret";
+    ;
+
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
@@ -44,17 +51,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new StandardPasswordEncoder(PASSWORD_SECRET);
+    }
 
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(converterUserDetailsService);
-//        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
 
@@ -73,12 +80,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and().exceptionHandling().accessDeniedPage("/accessDenied");
         http
                 .authorizeRequests()
-                .antMatchers("/login","/registration", "/resources/**", "/accessDenied").permitAll()
+                .antMatchers("/login", "/registration", "/resources/**", "/accessDenied").permitAll()
                 .and().authorizeRequests()
                 .anyRequest()
                 .hasAnyAuthority("USER")
                 .and().csrf().disable()
-                .formLogin();
+                .formLogin()
+                .loginPage("/login").usernameParameter("email").passwordParameter("password");
 
 //                .and()
 //                .exceptionHandling().accessDeniedPage("/error/accessDenied.jsp");

@@ -24,7 +24,7 @@ public class User extends AbstractEntity{
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateOfBirth;
 
-    @JsonIgnore
+//    @JsonIgnore
     @NotEmpty
     private String password;
 

@@ -48,6 +48,11 @@ public class AuthenticationController {
         return "error/accessDenied";
     }
 
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String getLogin(){
+        return "login";
+    }
+
     @ExceptionHandler()
     public String onError() {
         return "error/error";

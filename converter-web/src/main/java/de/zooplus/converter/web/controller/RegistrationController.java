@@ -7,6 +7,7 @@ import de.zooplus.converter.web.validation.PasswordValidator;
 import de.zooplus.converter.web.validation.UniqueEmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,6 +38,9 @@ public class RegistrationController {
     @Autowired
     private UniqueEmailValidator uniqueEmailValidator;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
 
     @RequestMapping(method = RequestMethod.GET)
@@ -55,6 +59,7 @@ public class RegistrationController {
             return "registration";
         }
 
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userService.saveUser(user);
         return "registrationSuccess";
     }
