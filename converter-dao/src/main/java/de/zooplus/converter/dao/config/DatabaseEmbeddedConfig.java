@@ -14,6 +14,7 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.PathResource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
@@ -133,6 +134,7 @@ public class DatabaseEmbeddedConfig {
             dataSource.setURL("jdbc:h2:" + dbFile + ";AUTO_SERVER=TRUE");
             dataSource.setUser("sa");
             dataSource.setPassword("sa");
+        System.out.println(dataSource.getURL());
 //        }
 
         return dataSource;

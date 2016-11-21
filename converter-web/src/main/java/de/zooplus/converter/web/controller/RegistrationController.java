@@ -6,6 +6,7 @@ import de.zooplus.converter.service.internal.UserService;
 import de.zooplus.converter.web.validation.PasswordValidator;
 import de.zooplus.converter.web.validation.UniqueEmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +24,9 @@ import java.util.Locale;
 @Controller
 @RequestMapping("/registration")
 public class RegistrationController {
+
+    @Value("${TEST_PROPERTY}")
+    private String pro;
 
     @Autowired
     private UserService userService;

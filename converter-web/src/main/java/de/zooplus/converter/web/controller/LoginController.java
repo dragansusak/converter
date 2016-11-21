@@ -9,8 +9,8 @@ import org.springframework.web.servlet.view.RedirectView;
 /**
  * Created by dragan on 19-Nov-16.
  */
-@Controller
-@RequestMapping("/")
+//@Controller
+//@RequestMapping("/")
 public class LoginController {
 
     @RequestMapping

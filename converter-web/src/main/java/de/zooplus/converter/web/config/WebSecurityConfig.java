@@ -1,34 +1,38 @@
 package de.zooplus.converter.web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
  * Created by dragan on 20-Nov-16.
  */
-@Order(1)
 @Configuration
-@EnableWebMvcSecurity
-@ComponentScan("de.zooplus.converter.web")
+@EnableWebSecurity
+@ComponentScan(basePackages = {"de.zooplus.converter"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-//    @Autowired
-//    @Qualifier("ConverterUserDetailsService")
-//    private UserDetailsService converterUserDetailsService;
+    @Autowired
+    @Qualifier("ConverterUserDetailsService")
+    private UserDetailsService converterUserDetailsService;
 
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(converterUserDetailsService);
-//        auth.authenticationProvider(authenticationProvider());
-        auth.inMemoryAuthentication()
-                .withUser("11").password("11").roles("USER");
+        auth.userDetailsService(converterUserDetailsService);
+        auth.authenticationProvider(authenticationProvider());
+//        auth.inMemoryAuthentication()
+//                .withUser("11").password("11").roles("USER");
     }
 
 
@@ -38,13 +42,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //    }
 
 
-//    @Bean
-//    public DaoAuthenticationProvider authenticationProvider() {
-//        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-//        authenticationProvider.setUserDetailsService(converterUserDetailsService);
-////        authenticationProvider.setPasswordEncoder(passwordEncoder());
-//        return authenticationProvider;
-//    }
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
+        authenticationProvider.setUserDetailsService(converterUserDetailsService);
+//        authenticationProvider.setPasswordEncoder(passwordEncoder());
+        return authenticationProvider;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -62,9 +66,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .anyRequest()
-                .hasAnyRole("USER1")
+                .hasAnyAuthority("USER")
                 .and()
-                .httpBasic();
+                .formLogin();
 //                .loginPage("/login")
 //                .defaultSuccessUrl("/home")
 //                .loginProcessingUrl("/login_process")

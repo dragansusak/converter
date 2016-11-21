@@ -3,6 +3,7 @@ package de.zooplus.converter.service.security;
 import de.zooplus.converter.model.entity.User;
 import de.zooplus.converter.service.internal.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,13 +24,14 @@ public class ConverterUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
 
+    @Value("${TEST_PROPERTY}")
+    private String pro;
+
     @Transactional(readOnly = true)
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userService.getUserByEmail(email);
-        System.out.println("User : " + user);
         if (user == null) {
-            System.out.println("User not found");
             throw new UsernameNotFoundException("Username not found");
         }
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
@@ -39,7 +41,8 @@ public class ConverterUserDetailsService implements UserDetailsService {
 
     private List<GrantedAuthority> getGrantedAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_AUTHENTICATED"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        authorities.add(new SimpleGrantedAuthority("USER"));
 
         return authorities;
     }

@@ -30,6 +30,9 @@ public class HomeController {
     @Autowired
     private ConversionService conversionService;
 
+    //http://api.fixer.io/latest?symbols=EUR&base=USD
+    //http://api.fixer.io/2000-01-03?symbols=EUR&base=USD
+
     @Autowired
     private ExchangeRateService exchangeRateService;
 
