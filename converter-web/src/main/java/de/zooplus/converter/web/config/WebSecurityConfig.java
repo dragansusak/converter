@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,6 +14,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.access.AccessDeniedHandlerImpl;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by dragan on 20-Nov-16.
@@ -65,15 +73,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and().exceptionHandling().accessDeniedPage("/accessDenied");
         http
                 .authorizeRequests()
+                .antMatchers("/login","/registration", "/resources/**", "/accessDenied").permitAll()
+                .and().authorizeRequests()
                 .anyRequest()
                 .hasAnyAuthority("USER")
-                .and()
-                .csrf().disable()
+                .and().csrf().disable()
                 .formLogin();
+
+//                .and()
+//                .exceptionHandling().accessDeniedPage("/error/accessDenied.jsp");
+//                .failureUrl("/login?error=true");
+//                .loginProcessingUrl("/login_process");
 //                .loginPage("/login")
 //                .defaultSuccessUrl("/home")
 //                .loginProcessingUrl("/login_process")
-//                .failureUrl("/login?error=true");
 //                .and()
 //                .logout().logoutSuccessUrl("/login");
     }

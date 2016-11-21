@@ -12,5 +12,5 @@ import java.util.List;
 @Repository
 public interface ConversionRepository extends JpaRepository<Conversion,Integer> {
 
-    List<Conversion> findTop10ByUserIdOrderByIdDesc(Integer userId);
+    List<Conversion> findTop10ByUserEmailOrderByIdDesc(String email);
 }

@@ -19,8 +19,6 @@ import java.util.List;
 @Table(name = "users")
 public class User extends AbstractEntity{
 
-    private String name;
-
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
@@ -126,11 +124,4 @@ public class User extends AbstractEntity{
         this.repeatedPassword = repeatedPassword;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

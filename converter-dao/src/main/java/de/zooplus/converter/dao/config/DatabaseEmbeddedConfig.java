@@ -13,6 +13,7 @@ import org.apache.log4j.lf5.util.Resource;
 import org.h2.jdbcx.JdbcDataSource;
 import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -54,6 +55,12 @@ public class DatabaseEmbeddedConfig {
     public static final String DB_ENTITY_TRANSACTION_MANAGER = DatabaseEmbeddedConfig.UNIT_NAME + "_transactionManager";
 
     public static final String UNIT_NAME = "converterDbUnit";
+
+    @Value("${DATABASE_USER}")
+    private String username;
+
+    @Value("${DATABASE_PASSWORD}")
+    private String password;
 
 
     public static JpaVendorAdapter jpaVendorAdapter() {
@@ -132,9 +139,8 @@ public class DatabaseEmbeddedConfig {
        */
             final String dbFile = dapAppDataDir + "/" + dbFileName;
             dataSource.setURL("jdbc:h2:" + dbFile + ";AUTO_SERVER=TRUE");
-            dataSource.setUser("sa");
-            dataSource.setPassword("sa");
-        System.out.println(dataSource.getURL());
+            dataSource.setUser(username);
+            dataSource.setPassword(password);
 //        }
 
         return dataSource;

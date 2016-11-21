@@ -18,13 +18,15 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     @Autowired
     private RestTemplate restTemplate;
 
-//    @Value("${EXCHANGE_REST_BASE_URL}")
-    private String baseUrl = "http://api.fixer.io/";
+    @Value("${EXCHANGE_REST_BASE_URL}")
+    private String baseUrl;
 
     @Override
     public Double getExchangeRate(String sourceCurrency, String targetCurrency, Date validOn) {
-        final String completeUrl = baseUrl + new SimpleDateFormat("yyyy-MM-dd").format(validOn)+"?base="+sourceCurrency+"&symbols="+targetCurrency;
+        final String completeUrl = baseUrl + new SimpleDateFormat("yyyy-MM-dd").format(validOn) + "?base=" + sourceCurrency + "&symbols=" + targetCurrency;
+
         ExchangeRateResult result = restTemplate.getForObject(completeUrl, ExchangeRateResult.class);
-      return result.getRates().get(targetCurrency);
+
+        return result.getRates().get(targetCurrency);
     }
 }

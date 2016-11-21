@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface ConversionService {
 
-    List<Conversion> getAllForUser(Integer userId);
+    List<Conversion> getAllForUser(String userEmail);
 
     Conversion getById(Integer conversionId);
 
-    void saveConversion(Conversion conversion);
+    void saveConversion(Conversion conversion, String userEmail);
 }

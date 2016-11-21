@@ -1,6 +1,7 @@
 package de.zooplus.converter.service.internal;
 
 import de.zooplus.converter.dao.repository.ConversionRepository;
+import de.zooplus.converter.dao.repository.UserRepository;
 import de.zooplus.converter.model.entity.Conversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,9 +18,12 @@ public class ConversionServiceImpl implements ConversionService{
     @Autowired
     private ConversionRepository conversionRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
-    public List<Conversion> getAllForUser(Integer userId) {
-        return conversionRepository.findTop10ByUserIdOrderByIdDesc(userId);
+    public List<Conversion> getAllForUser(String userEmail) {
+        return conversionRepository.findTop10ByUserEmailOrderByIdDesc(userEmail);
     }
 
     @Override
@@ -29,7 +33,8 @@ public class ConversionServiceImpl implements ConversionService{
 
     @Transactional
     @Override
-    public void saveConversion(Conversion conversion) {
-         conversionRepository.save(conversion);
+    public void saveConversion(Conversion conversion, String userEmail) {
+        conversion.setUser(userRepository.findByEmail(userEmail));
+        conversionRepository.save(conversion);
     }
 }

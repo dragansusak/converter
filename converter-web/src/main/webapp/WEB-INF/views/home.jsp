@@ -11,7 +11,7 @@
 <div class="header">
     <span class="userName">User: ${loggedUser}</span>
     <span>
-        <a href="/converter/login">Logout</a>
+        <a href="/converter/logout">Logout</a>
     </span>
 </div>
     <div>

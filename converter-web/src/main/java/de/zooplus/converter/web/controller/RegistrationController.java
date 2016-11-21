@@ -25,9 +25,6 @@ import java.util.Locale;
 @RequestMapping("/registration")
 public class RegistrationController {
 
-    @Value("${TEST_PROPERTY}")
-    private String pro;
-
     @Autowired
     private UserService userService;
 
