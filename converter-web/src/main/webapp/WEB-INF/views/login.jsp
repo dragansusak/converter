@@ -24,7 +24,7 @@
         </div>
     </c:if>
 </div>
-<form:form method="POST" action="/converter/login">
+<form:form method="POST" action="/converter/login" >
     <table>
         <tr>
             <td><label for="email">Email</label></td>

@@ -2,6 +2,8 @@ package de.zooplus.converter.web.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -64,4 +66,5 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         resource.setDefaultEncoding("UTF-8");
         return resource;
     }
+
 }

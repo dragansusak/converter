@@ -80,7 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and().exceptionHandling().accessDeniedPage("/accessDenied");
         http
                 .authorizeRequests()
-                .antMatchers("/login", "/registration", "/resources/**", "/accessDenied").permitAll()
+                .antMatchers("/login", "/registration", "/resources/**").permitAll()
                 .and().authorizeRequests()
                 .anyRequest()
                 .hasAnyAuthority("USER")

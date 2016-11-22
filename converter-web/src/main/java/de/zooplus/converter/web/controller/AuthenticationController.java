@@ -39,12 +39,6 @@ public class AuthenticationController {
         return "redirect:/login?logout";
     }
 
-    @RequestMapping(value="/accessDenied", method = RequestMethod.GET)
-    public String accessDenied () {
-
-        return "error/accessDenied";
-    }
-
     @RequestMapping(value = "/login",method = RequestMethod.GET)
     public String getLogin(){
         return "login";
