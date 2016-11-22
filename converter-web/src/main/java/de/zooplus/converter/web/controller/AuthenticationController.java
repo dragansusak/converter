@@ -3,14 +3,14 @@ package de.zooplus.converter.web.controller;
 import de.zooplus.converter.model.entity.User;
 import de.zooplus.converter.service.internal.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.View;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by dragan on 19-Nov-16.
  */
-@Controller
+@ControllerAdvice
 @RequestMapping("/")
 public class AuthenticationController {
 
@@ -53,9 +53,15 @@ public class AuthenticationController {
         return "login";
     }
 
-    @ExceptionHandler()
+    @ExceptionHandler(value = Exception.class)
     public String onError() {
         return "error/error";
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleResourceNotFoundException() {
+        return "error/notFound";
     }
 
 }

@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Error Page</title>
+    <title>Resource not found</title>
 </head>
 <body>
-Application Error.
+Requested resource not found.
 Try <a href="/converter/login">Login</a> page.
 </body>
 </html>

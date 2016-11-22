@@ -26,9 +26,13 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
         ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
 
+        servlet.setInitParameter("throwExceptionIfNoHandlerFound", Boolean.TRUE.toString());
+
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/");
     }
+
+
 
 
 
