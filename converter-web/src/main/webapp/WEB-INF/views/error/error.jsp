@@ -5,6 +5,6 @@
 </head>
 <body>
 Application Error.
-Try <a href="/converter/login">Login</a> page.
+Try <a href="/converter/home">Home</a> page.
 </body>
 </html>
