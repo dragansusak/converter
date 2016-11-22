@@ -1,8 +1,6 @@
 package de.zooplus.converter.web.config;
 
 
-import de.zooplus.converter.dao.config.DatabaseEmbeddedConfig;
-import de.zooplus.converter.service.config.ServiceConfig;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
@@ -20,7 +18,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
     public void onStartup(ServletContext servletContext) throws ServletException {
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-        ctx.register(AppConfig.class);
+        ctx.register(WebMvcConfig.class);
         ctx.setServletContext(servletContext);
 
 
@@ -30,6 +28,7 @@ public class WebAppInitializer implements WebApplicationInitializer {
 
         servlet.setLoadOnStartup(1);
         servlet.addMapping("/");
+
     }
 
 

@@ -4,10 +4,13 @@ import de.zooplus.converter.dao.repository.ConversionRepository;
 import de.zooplus.converter.dao.repository.UserRepository;
 import de.zooplus.converter.model.entity.Conversion;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by dragan on 20-Nov-16.
@@ -26,9 +29,10 @@ public class ConversionServiceImpl implements ConversionService{
         return conversionRepository.findTop10ByUserEmailOrderByIdDesc(userEmail);
     }
 
+    @Cacheable(value = "myCache")
     @Override
-    public Conversion getById(Integer conversionId) {
-        return conversionRepository.findOne(conversionId);
+    public Optional<Conversion> findByDateAndCurrency(Date date, String sourceCurrency, String targetCurrency) {
+        return conversionRepository.findFirst1ByValidOnAndSourceCurrencyAndTargetCurrency(date, sourceCurrency, targetCurrency).stream().findFirst();
     }
 
     @Transactional

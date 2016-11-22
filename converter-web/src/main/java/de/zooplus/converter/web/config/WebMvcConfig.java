@@ -2,13 +2,17 @@ package de.zooplus.converter.web.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import org.springframework.cache.CacheManager;
-import org.springframework.cache.ehcache.EhCacheCacheManager;
-import org.springframework.context.annotation.*;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.text.SimpleDateFormat;
@@ -20,20 +24,16 @@ import java.util.List;
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = {"de.zooplus.converter.web.controller", "de.zooplus.converter.web.validation"})
-public class AppConfig extends WebMvcConfigurerAdapter {
+@Import(PropertyConfig.class)
+public class WebMvcConfig extends WebMvcConfigurerAdapter {
+
+    @Value("${STATIC_RESOURCE_CACHE_PERIOD_IN_SECONDS}")
+    private int cachePeriod;
 
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         converters.add(jackson2HttpMessageConverter());
     }
-
-   
-    //    @Override
-//    public void addViewControllers(ViewControllerRegistry registry) {
-//        super.addViewControllers(registry);
-//        registry.addViewController("/").setViewName("home");
-//        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-//    }
 
     @Bean
     public InternalResourceViewResolver htmlViewResolver() {
@@ -46,7 +46,10 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/WEB-INF/**","/resources/**").addResourceLocations("/WEB-INF/","/resources/").setCachePeriod(0);
+        registry.addResourceHandler("/WEB-INF/**","/resources/**").
+                addResourceLocations("/WEB-INF/","/resources/").
+                setCachePeriod(cachePeriod);
+
     }
 
     @Bean

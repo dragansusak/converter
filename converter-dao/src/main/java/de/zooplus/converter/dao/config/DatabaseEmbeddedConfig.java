@@ -141,6 +141,7 @@ public class DatabaseEmbeddedConfig {
             dataSource.setURL("jdbc:h2:" + dbFile + ";AUTO_SERVER=TRUE");
             dataSource.setUser(username);
             dataSource.setPassword(password);
+            System.out.println("START EMBEDDED DATABASE");
 //        }
 
         return dataSource;

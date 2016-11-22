@@ -13,7 +13,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 public class ErrorHandlingController {
 
     @ExceptionHandler(value = Exception.class)
-    public String onError() {
+    public String onError(Exception ex) {
         return "error/error";
     }
 

@@ -11,10 +11,12 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class AbstractEntity {
 
+    @JsonIgnore
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     protected Integer id;
 
+    @JsonIgnore
     @Temporal(TemporalType.TIMESTAMP)
     protected Date createdOn;
 

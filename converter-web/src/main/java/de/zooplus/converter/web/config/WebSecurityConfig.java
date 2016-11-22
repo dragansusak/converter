@@ -30,7 +30,7 @@ import java.io.IOException;
  * Created by dragan on 20-Nov-16.
  */
 @Configuration
-@EnableWebSecurity
+@EnableWebMvcSecurity
 @ComponentScan(basePackages = {"de.zooplus.converter"})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -39,15 +39,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService converterUserDetailsService;
 
     private static final String PASSWORD_SECRET = "secret";
-    ;
+
+    @Value("${REST_USER}")
+    private String restUser;
+
+    @Value("${REST_PASSWORD}")
+    private String restPassword;
 
 
     @Autowired
     public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(converterUserDetailsService);
         auth.authenticationProvider(authenticationProvider());
-//        auth.inMemoryAuthentication()
-//                .withUser("11").password("11").roles("USER");
+        auth.inMemoryAuthentication()
+                .withUser(restUser).password(restPassword).authorities("WEBSERVICE_USER");
     }
 
 
@@ -80,11 +85,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and().exceptionHandling().accessDeniedPage("/accessDenied");
         http
                 .authorizeRequests()
-                .antMatchers("/login", "/registration", "/resources/**").permitAll()
-                .and().authorizeRequests()
+                .antMatchers("/login", "/registration", "/resources/**")
+                .permitAll()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/webservice/**")
+//                .hasAnyAuthority("WEBSERVICE_USER")
+//                .and()
+//                .httpBasic()
+                .and()ovaj dio oko resta treba da proradi
+                .authorizeRequests()
                 .anyRequest()
                 .hasAnyAuthority("USER")
-                .and().csrf().disable()
+                .and()
+                .csrf()
+                .disable()
                 .formLogin()
                 .loginPage("/login").usernameParameter("email").passwordParameter("password");
 
