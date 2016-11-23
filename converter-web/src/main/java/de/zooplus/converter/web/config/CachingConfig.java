@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by Dragan Susak on 22-Nov-16.
+ * Created by dragan
  */
 @Configuration
 @EnableCaching

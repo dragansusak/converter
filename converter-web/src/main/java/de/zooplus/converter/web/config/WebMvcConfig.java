@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 /**
- * Created by dragan on 16-Apr-16.
+ * Created by dragan
  */
 @EnableWebMvc
 @Configuration

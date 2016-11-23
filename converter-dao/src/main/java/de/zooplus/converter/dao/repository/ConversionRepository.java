@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by dragan on 20-Nov-16.
+ * Created by dragan
  */
 @Repository
 public interface ConversionRepository extends JpaRepository<Conversion,Integer> {

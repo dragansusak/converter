@@ -8,7 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 /**
- * Created by dragan on 20-Nov-16.
+ * Created by dragan
  */
 @Component
 public class UniqueEmailValidator implements Validator {

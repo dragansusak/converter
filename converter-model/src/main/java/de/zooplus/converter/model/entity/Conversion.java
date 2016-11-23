@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * Created by dragan on 19-Nov-16.
+ * Created by dragan
  */
 @Entity
 @Table(name = "conversions")

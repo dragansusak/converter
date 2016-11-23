@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by Dragan Susak on 18-Nov-16.
+ * Created by dragan
  */
 @Entity
 @Table(name = "users")

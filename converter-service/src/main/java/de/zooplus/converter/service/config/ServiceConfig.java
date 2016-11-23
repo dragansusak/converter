@@ -4,7 +4,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * Created by Dragan Susak on 18-Nov-16.
+ * Created by dragan
  */
 @Configuration
 @ComponentScan(basePackages = {"de.zooplus.converter.service"})

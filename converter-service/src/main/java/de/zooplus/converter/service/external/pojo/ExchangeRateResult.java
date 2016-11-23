@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Map;
 
 /**
- * Created by Dragan Susak on 21-Nov-16.
+ * Created by dragan
  */
 public class ExchangeRateResult {
 

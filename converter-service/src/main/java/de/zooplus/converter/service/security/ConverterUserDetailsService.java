@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dragan on 20-Nov-16.
+ * Created by dragan
  */
 @Service("ConverterUserDetailsService")
 public class ConverterUserDetailsService implements UserDetailsService {

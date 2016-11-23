@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import java.util.List;
 
 /**
- * Created by Dragan Susak on 22-Nov-16.
+ * Created by dragan
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ResultDTO{

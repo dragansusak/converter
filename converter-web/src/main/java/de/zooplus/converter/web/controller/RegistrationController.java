@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by dragan on 19-Nov-16.
+ * Created by dragan
  */
 @Controller
 @RequestMapping("/registration")

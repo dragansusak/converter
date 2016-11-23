@@ -30,7 +30,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by dragan on 20-Nov-16.
+ * Created by dragan
  */
 @Configuration
 @EnableWebMvcSecurity

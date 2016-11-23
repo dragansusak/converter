@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * Created by Dragan Susak on 18-Nov-16.
+ * Created by dragan
  */
 @Repository
 public interface UserRepository extends JpaRepository<User,Integer> {

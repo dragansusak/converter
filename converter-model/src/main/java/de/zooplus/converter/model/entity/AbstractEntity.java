@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 /**
- * Created by dragan on 19-Nov-16.
+ * Created by dragan
  */
 @MappedSuperclass
 public abstract class AbstractEntity {

@@ -8,7 +8,7 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import java.util.Properties;
 
 /**
- * Created by Dragan Susak on 21-Nov-16.
+ * Created by dragan
  */
 @Configuration
 @PropertySource({"classpath:converter.properties"})

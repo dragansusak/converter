@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 
 /**
- * Created by Dragan Susak on 21-Nov-16.
+ * Created by dragan
  */
 @Configuration("RestClientConfig")
 @ComponentScan(basePackages = { "de.zooplus.converter.service.external" })

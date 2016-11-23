@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * Created by dragan on 20-Nov-16.
+ * Created by dragan
  */
 @Service
 public class ExchangeRateServiceImpl implements ExchangeRateService {

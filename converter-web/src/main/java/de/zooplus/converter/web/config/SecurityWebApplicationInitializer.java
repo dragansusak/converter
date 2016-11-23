@@ -4,7 +4,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 /**
- * Created by Dragan Susak on 21-Nov-16.
+ * Created by dragan
  */
 @Order(1)
 public class SecurityWebApplicationInitializer extends AbstractSecurityWebApplicationInitializer {

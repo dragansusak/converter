@@ -5,7 +5,7 @@ import de.zooplus.converter.model.entity.User;
 import java.util.List;
 
 /**
- * Created by Dragan Susak on 18-Nov-16.
+ * Created by dragan
  */
 public interface UserService {
 
