@@ -62,6 +62,15 @@ public class DatabaseEmbeddedConfig {
     @Value("${DATABASE_PASSWORD}")
     private String password;
 
+    @Value("${DATABASE_START_AS_SERVER}")
+    private boolean startAsServer;
+
+    @Value("${DATABASE_FILE_NAME}")
+    private String dbFileName;
+
+    @Value("${DATABASE_SERVER_PORT}")
+    private int dbServerPort;
+
 
     public static JpaVendorAdapter jpaVendorAdapter() {
         final HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
@@ -106,43 +115,21 @@ public class DatabaseEmbeddedConfig {
         // return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).ignoreFailedDrops(true).build();
 
         String dapAppDataDir = "./db/appdata";
-        String dbFileName = "currency_converter_db";
-//        final String dapLocalDir = System.getProperty("dap.localdir");
-//
-//        if (StringUtils.isEmpty(dapLocalDir)) {
-//            dapAppDataDir = System.getProperty("java.io.tmpdir");
-//        } else {
-//            dapAppDataDir = dapLocalDir + "/appdata";
-//        }
-//
-//        final Collection<File> files = FileUtils.listFiles(new File(dapAppDataDir), TrueFileFilter.INSTANCE, TrueFileFilter.INSTANCE);
-//
-//        final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-//
-//        LOGGER.debug("Files in dir [{}]", dapAppDataDir);
-//        files.forEach(file -> LOGGER.debug("path [{}], timestamp [{}]", file.getAbsolutePath(), simpleDateFormat.format(file.lastModified())));
 
-    /*
-     * Use this to configure server instance. This allows connections of JDBC Tools vie network.
-     */
         final JdbcDataSource dataSource = new JdbcDataSource();
-//        if (startAsServer) {
-//
-//            startDBServer(dapAppDataDir);
-//            dataSource.setURL("jdbc:h2:tcp://localhost:9887/" + dbFileName + ";AUTO_SERVER=TRUE");
-//            dataSource.setUser("sa");
-//            dataSource.setPassword("sa");
-//            LOGGER.debug("H2 DB started as server, file is located in [{}]", dapAppDataDir);
-//        } else {
-      /*
-       * This creates a file and can be accessed via JDBC Tool
-       */
+        if (startAsServer) {
+            startDBServer(dapAppDataDir);
+            dataSource.setURL("jdbc:h2:tcp://localhost:" + dbServerPort + "/" + dbFileName + ";AUTO_SERVER=TRUE");
+            dataSource.setUser(username);
+            dataSource.setPassword(password);
+            System.out.println("START EMBEDDED DATABASE AS SERVER");
+        } else {
             final String dbFile = dapAppDataDir + "/" + dbFileName;
             dataSource.setURL("jdbc:h2:" + dbFile + ";AUTO_SERVER=TRUE");
             dataSource.setUser(username);
             dataSource.setPassword(password);
-            System.out.println("START EMBEDDED DATABASE");
-//        }
+            System.out.println("START EMBEDDED DATABASE AS FILE");
+        }
 
         return dataSource;
     }
@@ -198,7 +185,7 @@ public class DatabaseEmbeddedConfig {
      */
     private void startDBServer(final String dapAppDataDir) {
         try {
-            final Server server = Server.createTcpServer("-tcpPort", "9887", "-tcpAllowOthers", "-baseDir", dapAppDataDir);
+            final Server server = Server.createTcpServer("-tcpPort", Integer.toString(dbServerPort), "-tcpAllowOthers", "-baseDir", dapAppDataDir);
             server.start();
         } catch (final SQLException e) {
             // TODO Auto-generated catch block
