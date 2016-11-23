@@ -70,7 +70,7 @@ public class WebSecurityConfig {
         }
 
         @Override
-        protected void configure(HttpSecurity http) throws Exception {//
+        protected void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
                     .antMatchers("/home/**")
@@ -118,10 +118,8 @@ public class WebSecurityConfig {
 
         @Override
         public void configure(final AuthenticationManagerBuilder auth) throws Exception {
-            // @formatter:off
             auth.inMemoryAuthentication()
                     .withUser(restUser).password(restPassword).authorities("WEBSERVICE_USER");
-            // @formatter:on
         }
 
         @Bean(name = "authenticationManager")
