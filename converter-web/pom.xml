@@ -194,9 +194,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.glassfish.external</groupId>
-            <artifactId>opendmk_jmxremote_optional_jar</artifactId>
-            <version>1.0-b01-ea</version>
+            <groupId>mx4j</groupId>
+            <artifactId>mx4j</artifactId>
+            <version>3.0.2</version>
         </dependency>
 
         <!--<dependency>-->

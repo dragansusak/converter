@@ -14,6 +14,7 @@ import org.springframework.jmx.export.naming.MetadataNamingStrategy;
 import org.springframework.jmx.support.ConnectorServerFactoryBean;
 import org.springframework.jmx.support.MBeanServerConnectionFactoryBean;
 import org.springframework.jmx.support.MBeanServerFactoryBean;
+import org.springframework.remoting.rmi.RmiRegistryFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -30,7 +31,7 @@ import java.util.List;
 @Configuration
 @ComponentScan(basePackages = {"de.zooplus.converter.web.controller", "de.zooplus.converter.web.validation"})
 @Import(PropertyConfig.class)
-@EnableMBeanExport(server="myMBeanServer")
+@EnableMBeanExport
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Value("${STATIC_RESOURCE_CACHE_PERIOD_IN_SECONDS}")
@@ -76,28 +77,28 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return resource;
     }
 
-    @Bean
-    public MetadataNamingStrategy getNamingStrategy() {
-        MetadataNamingStrategy strategy = new MetadataNamingStrategy();
-        strategy.setAttributeSource(new AnnotationJmxAttributeSource());
-        return strategy;
-    }
-
-    @Bean
-    public MetadataMBeanInfoAssembler getMbeanInfoAssembler() {
-        return new MetadataMBeanInfoAssembler(new AnnotationJmxAttributeSource());
-    }
-
-    @Bean
-    @Lazy(false)
-    public MBeanExporter getExporter() {
-        MBeanExporter exporter = new MBeanExporter();
-        exporter.setAutodetect(true);
-        exporter.setNamingStrategy(getNamingStrategy());
-        exporter.setAssembler(getMbeanInfoAssembler());
-        exporter.setServer(mBeanServer());
-        return exporter;
-    }
+//    @Bean
+//    public MetadataNamingStrategy getNamingStrategy() {
+//        MetadataNamingStrategy strategy = new MetadataNamingStrategy();
+//        strategy.setAttributeSource(new AnnotationJmxAttributeSource());
+//        return strategy;
+//    }
+//
+//    @Bean
+//    public MetadataMBeanInfoAssembler getMbeanInfoAssembler() {
+//        return new MetadataMBeanInfoAssembler(new AnnotationJmxAttributeSource());
+//    }
+//
+//    @Bean
+//    @Lazy(false)
+//    public MBeanExporter getExporter() {
+//        MBeanExporter exporter = new MBeanExporter();
+//        exporter.setAutodetect(true);
+////        exporter.setNamingStrategy(getNamingStrategy());
+////        exporter.setAssembler(getMbeanInfoAssembler());
+//        exporter.setServer(mBeanServer());
+//        return exporter;
+//    }
 
     @Bean(name = "myMBeanServer")
     public MBeanServer mBeanServer() {
@@ -110,15 +111,35 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
         return server;
     }
 
+//    @Bean
+//    public MBeanServerFactoryBean mBeanServer() {
+//        return new MBeanServerFactoryBean();
+//    }
+
+
     @Bean
-    public ConnectorServerFactoryBean serverConnector(){
-        return new ConnectorServerFactoryBean();
+    @DependsOn("rmiRegistry")
+    public ConnectorServerFactoryBean serverConnector() throws Exception{
+        ConnectorServerFactoryBean factoryBean =  new ConnectorServerFactoryBean();
+        factoryBean.setObjectName("connector:name=rmi");
+        factoryBean.setServiceUrl("service:jmx:rmi://localhost/jndi/rmi://localhost:4897/connector");
+//        factoryBean.setServer(mBeanServer());
+        return factoryBean;
+    }
+//
+    @Bean(name = "rmiRegistry")
+    public RmiRegistryFactoryBean registry(){
+        RmiRegistryFactoryBean registryFactoryBean = new RmiRegistryFactoryBean();
+//        registryFactoryBean.setPort(4897);
+//        registryFactoryBean.setHost("localhost");
+//        registryFactoryBean.setAlwaysCreate(true);
+        return  registryFactoryBean;
     }
 
     @Bean
-    public MBeanServerConnectionFactoryBean clientConnector(){
+    public MBeanServerConnectionFactoryBean clientConnector() throws Exception{
         MBeanServerConnectionFactoryBean factoryBean = new MBeanServerConnectionFactoryBean();
-//        factoryBean.setServiceUrl(ConnectorServerFactoryBean.DEFAULT_SERVICE_URL);
+        factoryBean.setServiceUrl("service:jmx:rmi://localhost/jndi/rmi://localhost:4897/jmxrmi");
         return factoryBean;
     }
 
