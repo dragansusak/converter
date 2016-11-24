@@ -193,34 +193,39 @@
             <artifactId>ehcache</artifactId>
         </dependency>
 
-
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test-mvc-htmlunit</artifactId>
-            <version>1.0.0.M1</version>
-            <scope>test</scope>
+            <groupId>org.glassfish.external</groupId>
+            <artifactId>opendmk_jmxremote_optional_jar</artifactId>
+            <version>1.0-b01-ea</version>
         </dependency>
 
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>spring-test-mvc-htmlunit</artifactId>-->
+            <!--<version>1.0.0.M1</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-spring</artifactId>
-            <version>1.1.6</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>junit</groupId>-->
+            <!--<artifactId>junit</artifactId>-->
+            <!--<version>4.11</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
-        <dependency>
-            <groupId>info.cukes</groupId>
-            <artifactId>cucumber-junit</artifactId>
-            <version>1.1.6</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>info.cukes</groupId>-->
+            <!--<artifactId>cucumber-spring</artifactId>-->
+            <!--<version>1.1.6</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>info.cukes</groupId>-->
+            <!--<artifactId>cucumber-junit</artifactId>-->
+            <!--<version>1.1.6</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -229,25 +234,29 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>spring-milestone</id>
-            <url>http://repo.spring.io/libs-milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+    <!--<pluginRepositories>-->
+        <!--<pluginRepository>-->
+            <!--<id>spring-milestone</id>-->
+            <!--<url>http://repo.spring.io/libs-milestone</url>-->
+            <!--<snapshots>-->
+                <!--<enabled>false</enabled>-->
+            <!--</snapshots>-->
+        <!--</pluginRepository>-->
+    <!--</pluginRepositories>-->
 
-    <repositories>
-        <repository>
-            <id>spring-milestone</id>
-            <url>http://repo.spring.io/libs-milestone</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+    <!--<repositories>-->
+        <!--&lt;!&ndash;<repository>&ndash;&gt;-->
+            <!--&lt;!&ndash;<id>spring-milestone</id>&ndash;&gt;-->
+            <!--&lt;!&ndash;<url>http://repo.spring.io/libs-milestone</url>&ndash;&gt;-->
+            <!--&lt;!&ndash;<snapshots>&ndash;&gt;-->
+                <!--&lt;!&ndash;<enabled>false</enabled>&ndash;&gt;-->
+            <!--&lt;!&ndash;</snapshots>&ndash;&gt;-->
+        <!--&lt;!&ndash;</repository>&ndash;&gt;-->
+        <!--<repository>-->
+            <!--<id>optional</id>-->
+            <!--<url>https://mvnrepository.com/artifact/javax.management/jmxremote_optional</url>-->
+        <!--</repository>-->
+    <!--</repositories>-->
     <build>
         <finalName>converter-web</finalName>
     </build>

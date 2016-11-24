@@ -12,6 +12,7 @@ import org.springframework.jmx.export.annotation.AnnotationJmxAttributeSource;
 import org.springframework.jmx.export.assembler.MetadataMBeanInfoAssembler;
 import org.springframework.jmx.export.naming.MetadataNamingStrategy;
 import org.springframework.jmx.support.ConnectorServerFactoryBean;
+import org.springframework.jmx.support.MBeanServerConnectionFactoryBean;
 import org.springframework.jmx.support.MBeanServerFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -107,6 +108,18 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 
         return server;
+    }
+
+    @Bean
+    public ConnectorServerFactoryBean serverConnector(){
+        return new ConnectorServerFactoryBean();
+    }
+
+    @Bean
+    public MBeanServerConnectionFactoryBean clientConnector(){
+        MBeanServerConnectionFactoryBean factoryBean = new MBeanServerConnectionFactoryBean();
+//        factoryBean.setServiceUrl(ConnectorServerFactoryBean.DEFAULT_SERVICE_URL);
+        return factoryBean;
     }
 
 }
