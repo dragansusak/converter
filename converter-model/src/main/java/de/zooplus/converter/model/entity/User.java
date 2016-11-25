@@ -22,25 +22,32 @@ public class User extends AbstractEntity{
     @NotNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.TIMESTAMP)
+    @Basic(optional = false)
     private Date dateOfBirth;
 
     @JsonIgnore
     @NotEmpty
+    @Basic(optional = false)
     private String password;
 
     @Pattern(message = "{javax.validation.constraints.Email.message}", regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
+    @Basic(optional = false)
     private String email;
 
     @NotEmpty
+    @Basic(optional = false)
     private String address;
 
     @NotEmpty
+    @Basic(optional = false)
     private String zipCode;
 
     @NotEmpty
+    @Basic(optional = false)
     private String city;
 
     @NotEmpty
+    @Basic(optional = false)
     private String country;
 
     @JsonIgnore
