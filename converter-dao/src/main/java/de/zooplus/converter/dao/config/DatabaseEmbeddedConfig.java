@@ -72,7 +72,7 @@ public class DatabaseEmbeddedConfig {
     private int dbServerPort;
 
 
-    public static JpaVendorAdapter jpaVendorAdapter() {
+    private JpaVendorAdapter jpaVendorAdapter() {
         final HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         jpaVendorAdapter.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
         jpaVendorAdapter.setShowSql(true);
@@ -98,7 +98,7 @@ public class DatabaseEmbeddedConfig {
         return factoryBean.getObject();
     }
 
-    private static Properties jpaProperties() {
+    private Properties jpaProperties() {
         final Properties jpaProperties = new Properties();
         jpaProperties.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
         jpaProperties.put("hibernate.show_sql", "false");
@@ -159,7 +159,6 @@ public class DatabaseEmbeddedConfig {
     private DatabasePopulator databasePopulator() {
         final ResourceDatabasePopulator resourceDatabasePopulator = new ResourceDatabasePopulator();
 
-//            resourceDatabasePopulator.addScript(new PathResource("db/create-db.sql"));
 //            resourceDatabasePopulator.addScript(new PathResource("db/sql/insert-data.sql"));
         return resourceDatabasePopulator;
     }
