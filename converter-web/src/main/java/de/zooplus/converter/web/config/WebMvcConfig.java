@@ -31,7 +31,7 @@ import java.util.List;
 @Configuration
 @ComponentScan(basePackages = {"de.zooplus.converter.web.controller", "de.zooplus.converter.web.validation"})
 @Import(PropertyConfig.class)
-@EnableMBeanExport
+//@EnableMBeanExport
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Value("${STATIC_RESOURCE_CACHE_PERIOD_IN_SECONDS}")
@@ -100,16 +100,16 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 //        return exporter;
 //    }
 
-    @Bean(name = "myMBeanServer")
-    public MBeanServer mBeanServer() {
-        MBeanServerFactoryBean mBeanServerFactoryBean = new MBeanServerFactoryBean();
-        mBeanServerFactoryBean.setLocateExistingServerIfPossible(true);
-        mBeanServerFactoryBean.afterPropertiesSet();
-        MBeanServer server = mBeanServerFactoryBean.getObject();
-
-
-        return server;
-    }
+//    @Bean(name = "myMBeanServer")
+//    public MBeanServer mBeanServer() {
+//        MBeanServerFactoryBean mBeanServerFactoryBean = new MBeanServerFactoryBean();
+//        mBeanServerFactoryBean.setLocateExistingServerIfPossible(true);
+//        mBeanServerFactoryBean.afterPropertiesSet();
+//        MBeanServer server = mBeanServerFactoryBean.getObject();
+//
+//
+//        return server;
+//    }
 
 //    @Bean
 //    public MBeanServerFactoryBean mBeanServer() {
@@ -117,30 +117,30 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 //    }
 
 
-    @Bean
-    @DependsOn("rmiRegistry")
-    public ConnectorServerFactoryBean serverConnector() throws Exception{
-        ConnectorServerFactoryBean factoryBean =  new ConnectorServerFactoryBean();
-        factoryBean.setObjectName("connector:name=rmi");
-        factoryBean.setServiceUrl("service:jmx:rmi://localhost/jndi/rmi://localhost:4897/connector");
-//        factoryBean.setServer(mBeanServer());
-        return factoryBean;
-    }
+//    @Bean
+//    @DependsOn("rmiRegistry")
+//    public ConnectorServerFactoryBean serverConnector() throws Exception{
+//        ConnectorServerFactoryBean factoryBean =  new ConnectorServerFactoryBean();
+//        factoryBean.setObjectName("connector:name=rmi");
+//        factoryBean.setServiceUrl("service:jmx:rmi://localhost/jndi/rmi://localhost:4897/connector");
+////        factoryBean.setServer(mBeanServer());
+//        return factoryBean;
+//    }
+////
+//    @Bean(name = "rmiRegistry")
+//    public RmiRegistryFactoryBean registry(){
+//        RmiRegistryFactoryBean registryFactoryBean = new RmiRegistryFactoryBean();
+////        registryFactoryBean.setPort(4897);
+////        registryFactoryBean.setHost("localhost");
+////        registryFactoryBean.setAlwaysCreate(true);
+//        return  registryFactoryBean;
+//    }
 //
-    @Bean(name = "rmiRegistry")
-    public RmiRegistryFactoryBean registry(){
-        RmiRegistryFactoryBean registryFactoryBean = new RmiRegistryFactoryBean();
-//        registryFactoryBean.setPort(4897);
-//        registryFactoryBean.setHost("localhost");
-//        registryFactoryBean.setAlwaysCreate(true);
-        return  registryFactoryBean;
-    }
-
-    @Bean
-    public MBeanServerConnectionFactoryBean clientConnector() throws Exception{
-        MBeanServerConnectionFactoryBean factoryBean = new MBeanServerConnectionFactoryBean();
-        factoryBean.setServiceUrl("service:jmx:rmi://localhost/jndi/rmi://localhost:4897/jmxrmi");
-        return factoryBean;
-    }
+//    @Bean
+//    public MBeanServerConnectionFactoryBean clientConnector() throws Exception{
+//        MBeanServerConnectionFactoryBean factoryBean = new MBeanServerConnectionFactoryBean();
+//        factoryBean.setServiceUrl("service:jmx:rmi://localhost/jndi/rmi://localhost:4897/jmxrmi");
+//        return factoryBean;
+//    }
 
 }

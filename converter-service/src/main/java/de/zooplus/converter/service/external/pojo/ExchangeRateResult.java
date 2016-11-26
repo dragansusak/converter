@@ -17,6 +17,15 @@ public class ExchangeRateResult {
 
     private Map<String, Double> rates;
 
+    public ExchangeRateResult() {
+    }
+
+    public ExchangeRateResult(String base, Date date, Map<String, Double> rates) {
+        this.base = base;
+        this.date = date;
+        this.rates = rates;
+    }
+
     public String getBase() {
         return base;
     }

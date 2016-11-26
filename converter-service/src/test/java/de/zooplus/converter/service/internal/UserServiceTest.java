@@ -1,31 +1,36 @@
 package de.zooplus.converter.service.internal;
 
 import de.zooplus.converter.dao.repository.UserRepository;
-import de.zooplus.converter.model.entity.User;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.data.util.ReflectionUtils;
-import org.springframework.test.util.ReflectionTestUtils;
+import org.mockito.Mockito;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import static org.mockito.Matchers.any;
 
 /**
  * Created by Dragan Susak on 25-Nov-16.
  */
+@RunWith(MockitoJUnitRunner.class)
 public class UserServiceTest {
 
     @Mock
     private UserRepository userRepository;
 
-    private UserService userService;
-
-    @Before
-    public void setUp() {
-        userService = new UserServiceImpl();
-        ReflectionTestUtils.setField(userService, "userRepository", userRepository);
-    }
+    @InjectMocks
+    private UserService userService = new UserServiceImpl();
 
     @Test
-    public void testAllUsers() throws Exception {
-
+    public void testEmailAddressUnique() throws Exception {
+        Mockito.when(userRepository.countByEmail("dragan.susak@gmail.com")).thenReturn(0L);
+        Mockito.when(userRepository.countByEmail("aaaa.bbb@gmail.com")).thenReturn(1L);
+        final boolean result = userService.checkEmailUnique("dragan.susak@gmail.com");
+        final boolean result2 = userService.checkEmailUnique("aaaa.bbb@gmail.com");
+        Assert.assertTrue(result);
+        Assert.assertFalse(result2);
     }
 }

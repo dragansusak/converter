@@ -1,6 +1,7 @@
 package de.zooplus.converter.service.external;
 
 import de.zooplus.converter.service.external.pojo.ExchangeRateResult;
+import de.zooplus.converter.service.external.util.ExchangeRateUriBuilder;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.client.utils.URIBuilder;
@@ -24,20 +25,14 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Value("${EXCHANGE_REST_BASE_URL}")
-    private URI baseUrl;
-
-    @Value("${EXCHANGE_REST_BASE_URL_LATEST}")
-    private URI baseUrlLaterst;
+    @Autowired
+    private ExchangeRateUriBuilder uriBuilder;
 
     @Cacheable("myCache")
     @Override
     public Double getExchangeRate(String sourceCurrency, String targetCurrency, Date validOn) {
-        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUri(baseUrl.resolve(new SimpleDateFormat("yyyy-MM-dd").format(validOn)));
-        uriComponentsBuilder.queryParam("base", sourceCurrency);
-        uriComponentsBuilder.queryParam("symbols", targetCurrency);
 
-        ExchangeRateResult result = restTemplate.getForObject(uriComponentsBuilder.build().toUri(), ExchangeRateResult.class);
+        ExchangeRateResult result = restTemplate.getForObject(uriBuilder.buildUri(sourceCurrency, targetCurrency, validOn), ExchangeRateResult.class);
 
         return result.getRates().get(targetCurrency);
     }
@@ -45,14 +40,7 @@ public class ExchangeRateServiceImpl implements ExchangeRateService {
     @Cacheable("myCache")
     @Override
     public ExchangeRateResult getLatest(String sourceCurrency, String... targetCurrencies) {
-        final UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromUri(baseUrlLaterst);
-        if (StringUtils.isNotEmpty(sourceCurrency)) {
-            uriComponentsBuilder.queryParam("base", sourceCurrency);
-        }
-        if (ArrayUtils.isNotEmpty(targetCurrencies)) {
-            uriComponentsBuilder.queryParam("symbols", StringUtils.join(targetCurrencies, ','));
-        }
 
-        return restTemplate.getForObject(uriComponentsBuilder.build().toUri(), ExchangeRateResult.class);
+        return restTemplate.getForObject(uriBuilder.buildLatestUri(sourceCurrency, targetCurrencies), ExchangeRateResult.class);
     }
 }
